@@ -35,18 +35,15 @@
 		
 	
 		
-		function drawScore(){
-		
-		ctx.font = "16px Arial";
-		ctx.fillStyle = "#1E1E1E";
-		
+		function drawScore(){	
 		var end = new Date;		
-		ctx.fillText("Score: " + score + " gaming time: " +Math.round(((end - start)/1000)) +" sec", scoreHeight, scoreWidth);
-		if (score>100) {
-		
+		if (score>=100) {		
 		alert( "Вы закончили игру за " + ((end - start)/1000) + " секунд" );
 		document.location.reload();
 		}
+		ctx.font = "16px Arial";
+		ctx.fillStyle = "#1E1E1E";				
+		ctx.fillText("Score: " + score + " gaming time: " +Math.round(((end - start)/1000)) +" sec", scoreHeight, scoreWidth);
 	}
 		
 	
@@ -169,6 +166,7 @@
 		for (var i = 0; i<figures.length; i++){
 			figures[i].draw();
 		}
+		
 	}
 
 	
