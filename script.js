@@ -16,9 +16,8 @@
 		
 	function drawScore(){	
 		var end = new Date;		
-		if (score>=100) {		
+		if (score=100) {		
 			alert( "Вы закончили игру за " + ((end - start)/1000) + " секунд" );
-			document.location.reload();
 			document.location.reload();
 		}
 		ctx.font = "16px Arial";
