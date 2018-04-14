@@ -15,10 +15,15 @@
 	
 		
 	function drawScore(){	
+<<<<<<< HEAD
 		var end = new Date;	
 		
 		if (score>99 && wincheck == false) {
 			wincheck = true;
+=======
+		var end = new Date;		
+		if (score>99) {		
+>>>>>>> 2d722845382b2e1fa274e3d035837c185c48fe1f
 			alert( "Вы закончили игру за " + ((end - start)/1000) + " секунд" );
 			document.location.reload();
 		}
