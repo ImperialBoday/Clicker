@@ -3,14 +3,14 @@
 	var ctx = canvas.getContext("2d");		
 	var direction; 
 	var score = 0;
-	var diagonal=0;
-	var scoreHeight=20;
-	var scoreWidth=20;		
-	var click=0;
+	var diagonal = 0;
+	var scoreHeight = 20;
+	var scoreWidth = 20;		
+	var click = 0;
 	var start = new Date; 		
 	var figures = [new Ball(), new Ball(), new Ball(), new Box(), new Box(), new Box(), new Pic(), new Pic(), new Pic()];
-	var wincheck = false;
-		
+	var check = false;
+	var timer = 10;	
 		
 	
 		
@@ -18,17 +18,19 @@
 
 		var end = new Date;	
 		
-		if (score>99 && wincheck == false) {
-			wincheck = true;
-		}
-		var end = new Date;		
-		if (score>99) {		
+		if (score > 99 && check == false) {
+			check = true;
 			alert( "Вы закончили игру за " + ((end - start)/1000) + " секунд" );
+			document.location.reload();
+		}
+		if ((timer -  Math.round(((end - start)/1000))) == 0 && check == false){
+			check = true;
+			alert( "Вы проиграли со счётом: " + score );
 			document.location.reload();
 		}
 		ctx.font = "16px Arial";
 		ctx.fillStyle = "#1E1E1E";				
-		ctx.fillText("Score: " + score + " gaming time: " +Math.round(((end - start)/1000)) +" sec", scoreHeight, scoreWidth);
+		ctx.fillText("Score: " + score + " gaming time: " +(timer - Math.round(((end - start)/1000))) +" sec", scoreHeight, scoreWidth);
 	}
 		
 	
