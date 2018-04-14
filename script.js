@@ -9,14 +9,16 @@
 	var click=0;
 	var start = new Date; 		
 	var figures = [new Ball(), new Ball(), new Ball(), new Box(), new Box(), new Box(), new Pic(), new Pic(), new Pic()];
-
+	var wincheck = false;
 		
 		
 	
 		
 	function drawScore(){	
-		var end = new Date;		
-		if (score>99) {		
+		var end = new Date;	
+		
+		if (score>99 && wincheck == false) {
+			wincheck = true;
 			alert( "Вы закончили игру за " + ((end - start)/1000) + " секунд" );
 			document.location.reload();
 		}
@@ -44,10 +46,10 @@
 			ctx.closePath();
 		};
 		this.onclick = function(x,y){
-			if ((x - this.x) * (x - this.x) + (y - this.y)*(y - this.y) <= this.radius*this.radius){
-				this.color = 'rgb(' + random(0,255) + ',' + random(0,255) + ',' + random(0,255) + ')';
-				score++;
-			}
+				if ((x - this.x) * (x - this.x) + (y - this.y)*(y - this.y) <= this.radius*this.radius){
+					this.color = 'rgb(' + random(0,255) + ',' + random(0,255) + ',' + random(0,255) + ')';
+					score = score + Math.round(this.radius/10);
+				}
 			}
 	}
 
@@ -84,16 +86,16 @@
 				{
 					this.y-=10;
 				}
-				score++;
+				score = score + (Math.round((this.width + this.height)/20));
 			}
 		}
 	}
 
 		
 	function Pic() {
-		diagonal= random(10, 30);
-		this.width = diagonal*2.5;
-		this.height = diagonal;
+		this.diagonal= random(10, 30);
+		this.width = this.diagonal*2.5;
+		this.height = this.diagonal;
 		this.x = random(0, canvas.width-this.width);
 		this.y = random(scoreHeight, canvas.height-this.height);	        
 		this.pic = new Image();
@@ -105,17 +107,9 @@
     };
         this.onclick = function(x, y) {
             if (x >= this.x && x <= this.x + this.width && y >= this.y && y <= this.y + this.height) {					
-				score++;
-				click = Math.random ()*2
-				if (click <1){
-					this.width=this.width/2;
-					this.height=this.height/2;
-				}
-				if (click >1){
-					this.width=this.width*2;
-					this.height=this.height*2;
-				}
-			
+				score = score + Math.round(this.diagonal/10);
+				this.x = random(0, canvas.width-this.width);
+				this.y = random(scoreHeight, canvas.height-this.height); 			
             }
         };
     }
